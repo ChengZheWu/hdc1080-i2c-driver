@@ -1,0 +1,1 @@
+cmd_/workspace/linux-kernel/driver/hdc1080.ko := /workspace/linux-kernel/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-ld -r -EL --build-id=sha1  -T scripts/module.lds -o /workspace/linux-kernel/driver/hdc1080.ko /workspace/linux-kernel/driver/hdc1080.o /workspace/linux-kernel/driver/hdc1080.mod.o;  true

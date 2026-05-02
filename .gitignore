@@ -1,0 +1,21 @@
+# Buildroot（太大，可重現）
+linux-kernel/buildroot/
+
+# 編譯產物
+bare-metal/*.elf
+bare-metal/*.bin
+bare-metal/*.map
+bare-metal/src/*.o
+rtos/*.elf
+rtos/*.bin
+rtos/*.map
+rtos/src/*.o
+rtos/freertos/kernel/*.o
+rtos/freertos/portable/**/*.o
+linux-kernel/driver/*.o
+linux-kernel/driver/*.ko
+linux-kernel/driver/*.mod
+linux-kernel/driver/*.mod.c
+linux-kernel/driver/Module.symvers
+linux-kernel/driver/modules.order
+linux-kernel/prebuilt/

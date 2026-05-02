@@ -1,0 +1,1 @@
+cmd_/workspace/linux-kernel/driver/Module.symvers := sed 's/\.ko$$/\.o/' /workspace/linux-kernel/driver/modules.order | scripts/mod/modpost    -o /workspace/linux-kernel/driver/Module.symvers -e -i Module.symvers   -T -
