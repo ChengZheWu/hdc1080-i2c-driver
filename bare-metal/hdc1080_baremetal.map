@@ -1,0 +1,220 @@
+
+Discarded input sections
+
+ .group         0x0000000000000000        0xc src/startup.o
+ .group         0x0000000000000000        0xc src/startup.o
+ .data          0x0000000000000000        0x0 src/startup.o
+ .bss           0x0000000000000000        0x0 src/startup.o
+ .group         0x0000000000000000        0xc src/uart.o
+ .group         0x0000000000000000        0xc src/uart.o
+ .group         0x0000000000000000        0xc src/uart.o
+ .group         0x0000000000000000        0xc src/uart.o
+ .data          0x0000000000000000        0x0 src/uart.o
+ .bss           0x0000000000000000        0x0 src/uart.o
+ .debug_macro   0x0000000000000000      0xa5a src/uart.o
+ .debug_macro   0x0000000000000000      0x34e src/uart.o
+ .group         0x0000000000000000        0xc src/i2c.o
+ .group         0x0000000000000000        0xc src/i2c.o
+ .group         0x0000000000000000        0xc src/i2c.o
+ .group         0x0000000000000000        0xc src/i2c.o
+ .data          0x0000000000000000        0x0 src/i2c.o
+ .bss           0x0000000000000000        0x0 src/i2c.o
+ .debug_macro   0x0000000000000000      0xa5a src/i2c.o
+ .debug_macro   0x0000000000000000      0x34e src/i2c.o
+ .group         0x0000000000000000        0xc src/hdc1080.o
+ .group         0x0000000000000000        0xc src/hdc1080.o
+ .group         0x0000000000000000        0xc src/hdc1080.o
+ .group         0x0000000000000000        0xc src/hdc1080.o
+ .group         0x0000000000000000        0xc src/hdc1080.o
+ .data          0x0000000000000000        0x0 src/hdc1080.o
+ .bss           0x0000000000000000        0x0 src/hdc1080.o
+ .debug_macro   0x0000000000000000      0xa5a src/hdc1080.o
+ .debug_macro   0x0000000000000000      0x34e src/hdc1080.o
+ .debug_macro   0x0000000000000000       0x2e src/hdc1080.o
+ .group         0x0000000000000000        0xc src/main.o
+ .group         0x0000000000000000        0xc src/main.o
+ .group         0x0000000000000000        0xc src/main.o
+ .group         0x0000000000000000        0xc src/main.o
+ .group         0x0000000000000000        0xc src/main.o
+ .data          0x0000000000000000        0x0 src/main.o
+ .bss           0x0000000000000000        0x0 src/main.o
+ .debug_macro   0x0000000000000000      0xa5a src/main.o
+ .debug_macro   0x0000000000000000      0x34e src/main.o
+ .debug_macro   0x0000000000000000       0x28 src/main.o
+ .debug_macro   0x0000000000000000       0x4c src/main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000000000 0x0000000000400000 xr
+SRAM             0x0000000020000000 0x0000000000400000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD src/startup.o
+LOAD src/uart.o
+LOAD src/i2c.o
+LOAD src/hdc1080.o
+LOAD src/main.o
+
+.text           0x0000000000000000      0x970
+ *(.vector_table)
+ .vector_table  0x0000000000000000       0x1c src/startup.o
+                0x0000000000000000                vector_table
+ *(.text*)
+ .text          0x000000000000001c       0x64 src/startup.o
+                0x000000000000001c                Reset_Handler
+                0x0000000000000078                Default_Handler
+ .text          0x0000000000000080      0x2dc src/uart.o
+                0x0000000000000080                uart_init
+                0x00000000000000a0                uart_putc
+                0x00000000000000d0                uart_puts
+                0x00000000000001b0                uart_printf
+ .text          0x000000000000035c      0x1a8 src/i2c.o
+                0x0000000000000378                i2c_init
+                0x0000000000000394                i2c_write
+                0x0000000000000414                i2c_read
+                0x00000000000004b8                i2c_write_read
+ .text          0x0000000000000504      0x104 src/hdc1080.o
+                0x0000000000000504                hdc1080_init
+                0x0000000000000588                hdc1080_read
+ .text          0x0000000000000608      0x12c src/main.o
+                0x0000000000000628                main
+ *(.rodata*)
+ .rodata        0x0000000000000734       0x11 src/uart.o
+ *fill*         0x0000000000000745        0x3 
+ .rodata        0x0000000000000748       0x1e src/i2c.o
+ *fill*         0x0000000000000766        0x2 
+ .rodata        0x0000000000000768       0xa1 src/hdc1080.o
+ *fill*         0x0000000000000809        0x3 
+ .rodata        0x000000000000080c      0x163 src/main.o
+                0x0000000000000970                . = ALIGN (0x4)
+ *fill*         0x000000000000096f        0x1 
+                0x0000000000000970                _etext = .
+
+.glue_7         0x0000000000000970        0x0
+ .glue_7        0x0000000000000970        0x0 linker stubs
+
+.glue_7t        0x0000000000000970        0x0
+ .glue_7t       0x0000000000000970        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000000970        0x0
+ .vfp11_veneer  0x0000000000000970        0x0 linker stubs
+
+.v4_bx          0x0000000000000970        0x0
+ .v4_bx         0x0000000000000970        0x0 linker stubs
+
+.iplt           0x0000000000000970        0x0
+ .iplt          0x0000000000000970        0x0 src/startup.o
+
+.rel.dyn        0x0000000000000970        0x0
+ .rel.iplt      0x0000000000000970        0x0 src/startup.o
+
+.data           0x0000000020000000        0x0 load address 0x0000000000000970
+                0x0000000020000000                _sdata = .
+ *(.data*)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _edata = .
+
+.igot.plt       0x0000000020000000        0x0
+ .igot.plt      0x0000000020000000        0x0 src/startup.o
+
+.bss            0x0000000020000000        0x0
+                0x0000000020000000                _sbss = .
+ *(.bss*)
+ *(COMMON)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _ebss = .
+                0x0000000020400000                _stack_top = (ORIGIN (SRAM) + LENGTH (SRAM))
+OUTPUT(hdc1080_baremetal.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x0000000000000000      0x8a6
+ .debug_info    0x0000000000000000      0x133 src/startup.o
+ .debug_info    0x0000000000000133      0x219 src/uart.o
+ .debug_info    0x000000000000034c      0x244 src/i2c.o
+ .debug_info    0x0000000000000590      0x19f src/hdc1080.o
+ .debug_info    0x000000000000072f      0x177 src/main.o
+
+.debug_abbrev   0x0000000000000000      0x4a8
+ .debug_abbrev  0x0000000000000000       0xc4 src/startup.o
+ .debug_abbrev  0x00000000000000c4      0x13f src/uart.o
+ .debug_abbrev  0x0000000000000203      0x112 src/i2c.o
+ .debug_abbrev  0x0000000000000315       0xcf src/hdc1080.o
+ .debug_abbrev  0x00000000000003e4       0xc4 src/main.o
+
+.debug_aranges  0x0000000000000000       0xa0
+ .debug_aranges
+                0x0000000000000000       0x20 src/startup.o
+ .debug_aranges
+                0x0000000000000020       0x20 src/uart.o
+ .debug_aranges
+                0x0000000000000040       0x20 src/i2c.o
+ .debug_aranges
+                0x0000000000000060       0x20 src/hdc1080.o
+ .debug_aranges
+                0x0000000000000080       0x20 src/main.o
+
+.debug_macro    0x0000000000000000     0x107a
+ .debug_macro   0x0000000000000000       0x1a src/startup.o
+ .debug_macro   0x000000000000001a      0xa5a src/startup.o
+ .debug_macro   0x0000000000000a74      0x34e src/startup.o
+ .debug_macro   0x0000000000000dc2       0x32 src/uart.o
+ .debug_macro   0x0000000000000df4       0x28 src/uart.o
+ .debug_macro   0x0000000000000e1c       0x58 src/uart.o
+ .debug_macro   0x0000000000000e74       0x32 src/i2c.o
+ .debug_macro   0x0000000000000ea6       0x46 src/i2c.o
+ .debug_macro   0x0000000000000eec       0x2e src/i2c.o
+ .debug_macro   0x0000000000000f1a       0x47 src/hdc1080.o
+ .debug_macro   0x0000000000000f61       0x46 src/hdc1080.o
+ .debug_macro   0x0000000000000fa7       0x4c src/hdc1080.o
+ .debug_macro   0x0000000000000ff3       0x3b src/main.o
+ .debug_macro   0x000000000000102e       0x4c src/main.o
+
+.debug_line     0x0000000000000000      0x690
+ .debug_line    0x0000000000000000       0xae src/startup.o
+ .debug_line    0x00000000000000ae      0x241 src/uart.o
+ .debug_line    0x00000000000002ef      0x18e src/i2c.o
+ .debug_line    0x000000000000047d      0x10d src/hdc1080.o
+ .debug_line    0x000000000000058a      0x106 src/main.o
+
+.debug_str      0x0000000000000000     0x3bc8
+ .debug_str     0x0000000000000000     0x35c1 src/startup.o
+                                       0x3724 (size before relaxing)
+ .debug_str     0x00000000000035c1      0x286 src/uart.o
+                                       0x398a (size before relaxing)
+ .debug_str     0x0000000000003847      0x17b src/i2c.o
+                                       0x3957 (size before relaxing)
+ .debug_str     0x00000000000039c2      0x1c3 src/hdc1080.o
+                                       0x3a99 (size before relaxing)
+ .debug_str     0x0000000000003b85       0x43 src/main.o
+                                       0x3a66 (size before relaxing)
+
+.comment        0x0000000000000000       0x33
+ .comment       0x0000000000000000       0x33 src/startup.o
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000033       0x34 src/uart.o
+ .comment       0x0000000000000033       0x34 src/i2c.o
+ .comment       0x0000000000000033       0x34 src/hdc1080.o
+ .comment       0x0000000000000033       0x34 src/main.o
+
+.ARM.attributes
+                0x0000000000000000       0x2d
+ .ARM.attributes
+                0x0000000000000000       0x2d src/startup.o
+ .ARM.attributes
+                0x000000000000002d       0x2d src/uart.o
+ .ARM.attributes
+                0x000000000000005a       0x2d src/i2c.o
+ .ARM.attributes
+                0x0000000000000087       0x2d src/hdc1080.o
+ .ARM.attributes
+                0x00000000000000b4       0x2d src/main.o
+
+.debug_frame    0x0000000000000000      0x294
+ .debug_frame   0x0000000000000000       0x48 src/startup.o
+ .debug_frame   0x0000000000000048       0xdc src/uart.o
+ .debug_frame   0x0000000000000124       0xc0 src/i2c.o
+ .debug_frame   0x00000000000001e4       0x58 src/hdc1080.o
+ .debug_frame   0x000000000000023c       0x58 src/main.o
