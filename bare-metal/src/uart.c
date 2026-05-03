@@ -2,6 +2,11 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+/* 
+ * QEMU模擬，BAUDDIV先隨便設定
+ * BAUDDIV = PCLK 頻率 / Baud Rate
+ * PCLK（Peripheral Clock）：SoC 給 UART controller 的時鐘頻率，查 SoC 的 clock tree 文件或 TRM。
+ */
 void uart_init(void) {
     UART_BAUDDIV = 16;
     UART_CTRL    = 0x01;

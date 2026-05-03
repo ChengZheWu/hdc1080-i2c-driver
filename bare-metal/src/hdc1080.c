@@ -14,7 +14,7 @@
  * 業界實務：
  * - init 時驗證 Device ID，確保是正確的感測器
  * - 量測前送出暫存器位址，量測完再讀回
- * - 結果用整數 ×100 表示，避免 bare-metal 引入 libm
+ * - 結果用整數 ×100 表示，避免 bare-metal 引入 libm (math函式庫)
  */
 
 /* 模擬的原始感測器數值 */
@@ -41,7 +41,7 @@ int hdc1080_init(void) {
     uart_printf("[hdc1080] device ID read (simulated): 0x%x%x\n", id[0], id[1]);
     uart_puts("[hdc1080] (simulation mode: skipping ID check)\n");
 
-    /* 寫入 config：14-bit 解析度，分開量測模式 */
+    /* 設定 config：14-bit 解析度，分開量測模式 */
     uint8_t cfg_cmd[3];
     cfg_cmd[0] = HDC1080_REG_CONFIG;
     cfg_cmd[1] = 0x00; /* MSB */
@@ -70,7 +70,6 @@ int hdc1080_read(hdc1080_data_t *out) {
      * 所以我們注入模擬原始值
      */
     uint16_t temp_raw = ((uint16_t)SIM_TEMP_RAW);
-    uint16_t hum_raw  = ((uint16_t)SIM_HUM_RAW);
 
     /*
      * 換算公式（來自 TI HDC1080 datasheet）：
@@ -82,15 +81,19 @@ int hdc1080_read(hdc1080_data_t *out) {
      */
     out->temp_x100 = (int32_t)((uint32_t)temp_raw * 16500U / 65536U) - 4000;
 
+    /* Step 2: 讀濕度（流程同上） */
+    reg = HDC1080_REG_HUM;
+    if (i2c_write_read(HDC1080_I2C_ADDR, &reg, 1, raw, 2) != I2C_OK) {
+        return -1;
+    }
+
+    uint16_t hum_raw  = ((uint16_t)SIM_HUM_RAW);
+
     /*
      * H(%) = (raw / 2^16) * 100
      * H * 100 = raw * 10000 / 65536
      */
     out->hum_x100 = (uint32_t)hum_raw * 10000U / 65536U;
-
-    /* Step 2: 讀濕度（流程同上） */
-    reg = HDC1080_REG_HUM;
-    i2c_write_read(HDC1080_I2C_ADDR, &reg, 1, raw, 2);
 
     return 0;
 }

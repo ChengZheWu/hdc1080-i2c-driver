@@ -5,7 +5,6 @@
 /*
  * I2C Driver for MPS2-AN385
  *
- * 業界實務說明：
  * 在真實驅動中，每一步都要等 controller 完成（polling STAT.DONE）
  * 或是用 interrupt。這裡用 polling，符合 bare-metal 常見作法。
  *
@@ -13,11 +12,12 @@
  * 但整個流程（start → addr → data → stop）與真實硬體一致。
  */
 
-/* 等待操作完成，timeout 避免死鎖 */
+/* 
+ * 等待操作完成，避免因為 timeout 死鎖
+ * QEMU 環境：STAT 暫存器不會更新，直接回傳 OK
+ * 真實硬體需在此輪詢 I2C->STAT & I2C_STAT_DONE，並加 timeout
+ */
 static int i2c_wait_done(void) {
-    uint32_t timeout = 100000;
-    /* QEMU 環境：STAT 暫存器可能不會更新，直接 return OK */
-    (void)timeout;
     return I2C_OK;
 }
 

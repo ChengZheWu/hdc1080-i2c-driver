@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": false,
+    "files.eol": "\n",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "[c]": {
+        "editor.formatOnSave": false
+    }
+}
