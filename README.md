@@ -219,11 +219,11 @@ iio:device0
     Formula: Temp(C) = (raw + offset) x scale / 1000
              Humi(%) = raw x scale / 1000
 
-    Sample 1: Temp: 27.032 C  Humidity: 59.999 %
-    Sample 2: Temp: 27.032 C  Humidity: 59.999 %
-    Sample 3: Temp: 27.032 C  Humidity: 59.999 %
-    Sample 4: Temp: 27.032 C  Humidity: 59.999 %
-    Sample 5: Temp: 27.032 C  Humidity: 59.999 %
+    Sample 1: Temp: 27.03 C  Humidity: 59.99 %
+    Sample 2: Temp: 27.03 C  Humidity: 59.99 %
+    Sample 3: Temp: 27.03 C  Humidity: 59.99 %
+    Sample 4: Temp: 27.03 C  Humidity: 59.99 %
+    Sample 5: Temp: 27.03 C  Humidity: 59.99 %
 === Test complete ===
 ```
 
@@ -298,7 +298,7 @@ offset = -40000 / scale ≈ -15887
 
 ```
 Temp : (26624 + (-15887)) × 2.517700 / 1000 ≈ 27.03°C
-Humi : 39321 × 1.525879 / 1000              ≈ 60.00%
+Humi : 39321 × 1.525879 / 1000              ≈ 59.99%
 ```
 
 ---
@@ -310,8 +310,6 @@ Humi : 39321 × 1.525879 / 1000              ≈ 60.00%
 | Bare-metal | `mps2-an385` | ARM MPS2 | Cortex-M3 |
 | FreeRTOS | `mps2-an385` | ARM MPS2 | Cortex-M3 |
 | Linux | `ast2600-evb` | ASPEED AST2600 | Cortex-A7 (dual core) |
-
-**AST2600** 廣泛用於伺服器 BMC（Baseboard Management Controller），具備 16 個 I2C controller，是業界做 BMC 感測器驅動的常見平台（Dell、HPE、Meta 等均有使用）。
 
 ---
 
