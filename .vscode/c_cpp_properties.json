@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux Kernel Driver",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/workspace/linux-kernel/buildroot/output/build/linux-5.17.7/include",
+                "/workspace/linux-kernel/buildroot/output/build/linux-5.17.7/arch/arm/include",
+                "/workspace/linux-kernel/buildroot/output/build/linux-5.17.7/include/uapi"
+            ],
+            "defines": [
+                "__KERNEL__",
+                "__linux__"
+            ],
+            "compilerPath": "/workspace/linux-kernel/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-gcc",
+            "cStandard": "gnu11",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
+}

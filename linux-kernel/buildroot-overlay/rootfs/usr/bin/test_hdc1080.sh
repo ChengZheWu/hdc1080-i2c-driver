@@ -41,8 +41,8 @@ while [ $i -le 5 ]; do
     T_FRAC=$(( T_MDEG % 1000 ))
     if [ $T_FRAC -lt 0 ]; then T_FRAC=$(( -T_FRAC )); fi
 
-    # scale=1.525879 -> 乘以 15259 再除 10000
-    H_MDEG=$(( H_RAW * 15259 / 10000 ))
+    # scale=1.525879 -> 乘以 1525879 再除 1000000
+    H_MDEG=$(( H_RAW * 1525879 / 1000000 ))
     H_INT=$(( H_MDEG / 1000 ))
     H_FRAC=$(( H_MDEG % 1000 ))
 

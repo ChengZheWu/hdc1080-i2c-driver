@@ -10,7 +10,7 @@ echo "=== QEMU AST2600 Launch Script ==="
 # 檢查 image 是否存在
 KERNEL=$OUTPUT/images/zImage
 DTBS=$(ls $OUTPUT/images/aspeed-ast2600-*.dtb 2>/dev/null | head -1)
-ROOTFS=$OUTPUT/images/rootfs.cpio.gz
+ROOTFS=$OUTPUT/images/rootfs.cpio
 
 if [ ! -f "$KERNEL" ]; then
     echo "ERROR: Kernel image not found: $KERNEL"
