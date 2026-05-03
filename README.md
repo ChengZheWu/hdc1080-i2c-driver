@@ -219,11 +219,11 @@ iio:device0
     Formula: Temp(C) = (raw + offset) x scale / 1000
              Humi(%) = raw x scale / 1000
 
-    Sample 1: Temp: 27.031 C  Humidity: 60.003 %
-    Sample 2: Temp: 27.031 C  Humidity: 60.003 %
-    Sample 3: Temp: 27.031 C  Humidity: 60.003 %
-    Sample 4: Temp: 27.031 C  Humidity: 60.003 %
-    Sample 5: Temp: 27.031 C  Humidity: 60.003 %
+    Sample 1: Temp: 27.032 C  Humidity: 59.999 %
+    Sample 2: Temp: 27.032 C  Humidity: 59.999 %
+    Sample 3: Temp: 27.032 C  Humidity: 59.999 %
+    Sample 4: Temp: 27.032 C  Humidity: 59.999 %
+    Sample 5: Temp: 27.032 C  Humidity: 59.999 %
 === Test complete ===
 ```
 
