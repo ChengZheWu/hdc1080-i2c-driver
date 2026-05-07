@@ -5,5 +5,7 @@
     "editor.insertSpaces": true,
     "[c]": {
         "editor.formatOnSave": false
-    }
+    },
+    "git.ignoreLimitWarning": true,
+    "cmake.ignoreCMakeListsMissing": true
 }

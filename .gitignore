@@ -12,10 +12,29 @@ rtos/*.map
 rtos/src/*.o
 rtos/freertos/kernel/*.o
 rtos/freertos/portable/**/*.o
+
+# Linux kernel module 編譯產物
 linux-kernel/driver/*.o
 linux-kernel/driver/*.ko
 linux-kernel/driver/*.mod
 linux-kernel/driver/*.mod.c
 linux-kernel/driver/Module.symvers
 linux-kernel/driver/modules.order
+linux-kernel/driver/.*.cmd
+
+# rootfs 裡的 .ko（編譯產物）
+linux-kernel/buildroot-overlay/rootfs/lib/modules/*.ko
+
+# prebuilt（編譯產物）
 linux-kernel/prebuilt/
+
+# Yocto（太大，可重現）
+yocto/build/
+yocto/downloads/
+yocto/sstate-cache/
+yocto/poky/
+yocto/meta-openembedded/
+yocto/meta-raspberrypi/
+
+# VSCode
+.vscode/c_cpp_properties.json

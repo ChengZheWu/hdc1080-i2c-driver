@@ -1,0 +1,19 @@
+diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+index 89be13197780..9fecf9874e21 100644
+--- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
++++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+@@ -184,6 +184,14 @@ temp@2e {
+ 
+ &i2c1 {
+ 	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hdc1080@40 {
++		compatible = "ti,hdc1080";
++		reg = <0x40>;
++		ti,simulated;
++	};
+ };
+ 
+ &i2c2 {

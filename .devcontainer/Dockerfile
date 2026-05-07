@@ -2,9 +2,13 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Taipei
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV LANGUAGE=en_US:en
 
-# 基本工具
 RUN apt-get update && apt-get install -y \
+    locales \
+    sudo \
     build-essential \
     git \
     curl \
@@ -32,28 +36,36 @@ RUN apt-get update && apt-get install -y \
     libncurses-dev \
     u-boot-tools \
     device-tree-compiler \
-    && rm -rf /var/lib/apt/lists/*
-
-# ARM bare-metal toolchain (arm-none-eabi)
-RUN apt-get update && apt-get install -y \
     gcc-arm-none-eabi \
     binutils-arm-none-eabi \
     gdb-multiarch \
-    && rm -rf /var/lib/apt/lists/*
-
-# ARM Linux cross compiler (for kernel)
-RUN apt-get update && apt-get install -y \
     gcc-arm-linux-gnueabihf \
     binutils-arm-linux-gnueabihf \
-    && rm -rf /var/lib/apt/lists/*
-
-# QEMU - 從源碼編譯以支援 AST2600
-# 先裝 apt 版的 QEMU 支援 mps2-an385（bare-metal/rtos 用）
-RUN apt-get update && apt-get install -y \
     qemu-system-arm \
+    diffstat \
+    chrpath \
+    socat \
+    xz-utils \
+    debianutils \
+    iputils-ping \
+    python3-pexpect \
+    python3-git \
+    python3-jinja2 \
+    libsdl1.2-dev \
+    pylint \
+    xterm \
+    mesa-common-dev \
+    zstd \
+    lz4 \
+    libegl1 \
+    gawk \
     && rm -rf /var/lib/apt/lists/*
 
-# 建立 developer 使用者
+RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
+
+
+RUN pip3 install kas
+
 RUN useradd -m -s /bin/bash developer && \
     echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
